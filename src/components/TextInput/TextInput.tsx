@@ -1,17 +1,15 @@
-// @flow
-
 import React, { Component } from 'react';
 import { TextInput } from 'react-native';
 
 import { omit } from '../../omit';
 
-import type { INDEX } from '../../types';
+import { INDEX } from '../../types';
 
-type Props = {
-  +id: INDEX,
-  +onChangeText: (string, INDEX) => void,
-  +onFocus: INDEX => void,
-  +forwardRef: (?TextInput, INDEX) => void,
+interface Props {
+  id: INDEX,
+  onChangeText: (string: INDEX) => void,
+  onFocus: (i: INDEX) => void,
+  forwardRef: (TextInput: TextInput | undefined, INDEX: INDEX) => void,
 };
 
 export default class TextInputCustom extends Component<Props> {
@@ -19,7 +17,7 @@ export default class TextInputCustom extends Component<Props> {
 
   onFocus = () => this.props.onFocus(this.props.id);
 
-  inputRef = (ref: ?TextInput) => this.props.forwardRef(ref, this.props.id);
+  inputRef = (ref: TextInput) => this.props.forwardRef(ref, this.props.id);
 
   render() {
     return (

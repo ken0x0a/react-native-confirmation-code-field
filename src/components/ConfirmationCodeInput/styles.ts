@@ -1,7 +1,7 @@
 // @flow
 import { StyleSheet } from 'react-native';
 
-import type { InputPositions } from '../../types';
+import { InputPositions } from '../../types';
 
 export const styles = StyleSheet.create({
   container: {
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   containerStyleRight: { justifyContent: 'flex-end' },
 });
 
-export const getContainerStyle = (position: InputPositions): * => {
+export const getContainerStyle = (position: InputPositions): any => {
   switch (position) {
     case 'center':
       return styles.containerStyleCenter;

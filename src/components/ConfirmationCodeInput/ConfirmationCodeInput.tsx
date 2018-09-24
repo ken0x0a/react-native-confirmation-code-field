@@ -1,25 +1,49 @@
-// @flow
 import React, { PureComponent } from 'react';
 import { View, TextInput as TextInputNative, StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
 
 import { getClassStyle, getInputSpaceStyle, isMatchingCode } from '../../utils';
 import TextInput from '../TextInput';
 import { getContainerStyle, styles } from './styles';
-import { validateCompareCode, validateInputProps } from './validation';
+import {  validateInputProps } from './validation';
 
-import type { SyntheticEvent } from 'react-native/Libraries/Types/CoreEventTypes';
-import type { VariantNames, INDEX } from '../../types';
-import type { Props, State } from './types';
+import { SyntheticEvent } from 'react-native/Libraries/Types/CoreEventTypes';
 
+import { VariantNames, INDEX } from '../../types';
+import { Props, State, PropsTypeCustomValidatorFn } from './types'
 // eslint-disable-next-line
+
+interface ConfirmationCodeInputProps {
+  activeColor?: string,
+  autoFocus?: boolean,
+  cellBorderWidth?: number,
+  codeLength?: number,
+  compareWithCode?: PropsTypeCustomValidatorFn,
+  containerProps?: object,
+  defaultCode?: PropsTypeCustomValidatorFn,
+  getInputProps?: func,
+  ignoreCaseWhenCompareCode?: boolean,
+  inactiveColor?: string,
+  inputPosition?: 'center' | 'left' | 'right' | 'full-width'
+  onChangeCode?: func,
+  onFulfill: func.isRequired,
+  size?: number,
+  space?: number,
+  variant?: 'border-box'
+    | 'border-circle'
+    | 'border-b'
+    | 'border-b-t'
+    | 'border-l-r'
+    | 'clear'
+  keyboardType?: TextInputProps["keyboardType"],
+  maskSymbol?: string,
+}
 type DP = typeof ConfirmationCodeInput.defaultProps;
 
-const getDefaultCodeSymbols: number => Array<string> = codeLength =>
+const getDefaultCodeSymbols: ((number: number) => string[]) = codeLength =>
   new Array(codeLength).fill('');
 
 export default class ConfirmationCodeInput extends PureComponent<
-  $Diff<Props, DP> & $Shape<DP>,
+  Diff<Props, DP> & DP,
   State,
 > {
   styles: Object;
@@ -282,34 +306,6 @@ export default class ConfirmationCodeInput extends PureComponent<
       </View>
     );
   }
-
-  static propTypes = {
-    activeColor: PropTypes.string,
-    autoFocus: PropTypes.bool,
-    cellBorderWidth: PropTypes.number,
-    codeLength: PropTypes.number,
-    compareWithCode: validateCompareCode,
-    containerProps: PropTypes.object,
-    defaultCode: validateCompareCode,
-    getInputProps: PropTypes.func,
-    ignoreCaseWhenCompareCode: PropTypes.bool,
-    inactiveColor: PropTypes.string,
-    inputPosition: PropTypes.oneOf(['center', 'left', 'right', 'full-width']),
-    onChangeCode: PropTypes.func,
-    onFulfill: PropTypes.func.isRequired,
-    size: PropTypes.number,
-    space: PropTypes.number,
-    variant: PropTypes.oneOf([
-      'border-box',
-      'border-circle',
-      'border-b',
-      'border-b-t',
-      'border-l-r',
-      'clear',
-    ]),
-    keyboardType: TextInputNative.propTypes.keyboardType,
-    maskSymbol: PropTypes.string,
-  };
 
   static defaultProps = {
     activeColor: '#fff',

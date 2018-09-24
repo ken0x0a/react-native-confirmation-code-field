@@ -1,9 +1,9 @@
 // @flow
-import type { KeyboardType } from 'react-native/Libraries/Components/TextInput/TextInput';
-import type { ViewProps } from 'react-native/Libraries/Components/View/ViewPropTypes';
-import type { VariantNames, INDEX, InputPositions } from '../../types';
+import { KeyboardType } from 'react-native/Libraries/Components/TextInput/TextInput';
+import { ViewProps } from 'react-native/Libraries/Components/View/ViewPropTypes';
+import { VariantNames, INDEX, InputPositions } from '../../types';
 
-export type Props = $ReadOnly<{|
+export interface Props {
   codeLength?: number,
   defaultCode?: string,
   compareWithCode?: string,
@@ -21,7 +21,7 @@ export type Props = $ReadOnly<{|
 
   autoFocus?: boolean,
   // isMatching will be true|false when "compareWithCode" prop isn't empty string
-  onFulfill: (code: string, isMatching: ?boolean) => void,
+  onFulfill: (code: string, isMatching?: boolean) => void,
   onChangeCode?: (code: string) => void,
 
   getInputProps?: (index: INDEX) => Object,
@@ -34,15 +34,15 @@ export type Props = $ReadOnly<{|
   containerProps?: ViewProps,
 
   testID?: any,
-|}>;
+};
 
-export type State = {|
+export type State = {
   codeSymbols: Array<string>,
   currentIndex: number,
-|};
+}
 
 export type PropsTypeCustomValidatorFn = (
-  props: Object,
+  props: {codeLength: number},
   propName: string,
   componentName: string,
-) => ?Error;
+) => Error | undefined;

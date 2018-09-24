@@ -23,7 +23,7 @@ const render = props =>
   shallow(<ConfirmationCodeInput {...defaultProps} {...props} />);
 
 describe('onKeyPress', () => {
-  test("must do nothing whrn key code isn't Backspace", () => {
+  test("must do nothing when key code isn't Backspace", () => {
     const wrap = render();
     const event = {
       nativeEvent: {

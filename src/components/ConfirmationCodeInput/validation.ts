@@ -1,5 +1,4 @@
-// @flow
-import type { PropsTypeCustomValidatorFn } from './types';
+import { PropsTypeCustomValidatorFn } from './types';
 
 export const validateCompareCode: PropsTypeCustomValidatorFn = (
   props,
@@ -28,7 +27,7 @@ const notOverwrittenProps = [
   'onKeyPress',
 ];
 
-export const validateInputProps = (props: ?Object): void => {
+export const validateInputProps = (props?: {}): void => {
   const p = props;
 
   // eslint-disable-next-line no-eq-null

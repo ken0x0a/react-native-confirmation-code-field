@@ -1,6 +1,6 @@
 // @flow
 
-import type { InputPositions, VariantNames } from './types';
+import { InputPositions, VariantNames } from './types';
 
 export const isMatchingCode = (
   code: string,
@@ -40,11 +40,11 @@ export const getInputSpaceStyle = (
   }
 };
 
-type Options = {
-  +cellBorderWidth: number,
-  +activeColor: string,
-  +inactiveColor: string,
-  +inputSpaceStyle: Object,
+interface Options {
+  cellBorderWidth: number
+  activeColor: string
+  inactiveColor: string
+  inputSpaceStyle: Object
 };
 
 export const getClassStyle = (
@@ -89,9 +89,6 @@ export const getClassStyle = (
         borderColor,
       };
     default:
-      // eslint-disable-next-line
-      (variant: empty);
-
       return null;
   }
 };
